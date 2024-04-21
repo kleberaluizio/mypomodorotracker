@@ -1,9 +1,6 @@
 package com.pomodorotracker.backend.model.project;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import java.time.Duration;
 import java.util.List;
 import lombok.Data;
@@ -20,7 +17,7 @@ public class Project {
     private String title;
     private Duration targetTime;
     private Duration spentTime;
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Activity> activities;
 
     public Project(String title)

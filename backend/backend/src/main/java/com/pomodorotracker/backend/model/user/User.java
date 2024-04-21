@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Activity> activities;
 
 }

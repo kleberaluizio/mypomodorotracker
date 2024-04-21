@@ -7,7 +7,6 @@ import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Data
 @Entity
 public class Activity
@@ -24,4 +23,11 @@ public class Activity
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
+
+    private Activity(){}
+    public Activity(String title, Project project, User user){
+        this.title = title;
+        this.project = project;
+        this.user = user;
+    }
 }
