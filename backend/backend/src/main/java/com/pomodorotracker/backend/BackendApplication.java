@@ -21,7 +21,8 @@ public class BackendApplication {
 	public CommandLineRunner commandLineRunner (UserRepository urepo, ActivityRepository arepo, ProjectRepository prepo){
 		return args -> {
 			var user = urepo.findById(1);
-			user.ifPresent(arepo::findAllByUser);
+			user.ifPresent(u -> System.out.println(u.toString()));
+			//user.ifPresent(arepo::findAllByUser);
 		};
 	}
 //	@Bean

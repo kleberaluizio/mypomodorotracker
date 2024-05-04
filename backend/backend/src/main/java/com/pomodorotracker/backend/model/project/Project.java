@@ -1,5 +1,7 @@
 package com.pomodorotracker.backend.model.project;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.Duration;
 import java.util.List;
@@ -17,7 +19,8 @@ public class Project {
     private String title;
     private Duration targetTime;
     private Duration spentTime;
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Activity> activities;
 
     public Project(String title)
