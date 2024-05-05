@@ -6,12 +6,14 @@ import jakarta.persistence.*;
 
 import java.util.List;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 @NoArgsConstructor
-@Data
-@ToString
+@Getter
+@Setter
 @Entity
 public class User {
 

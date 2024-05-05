@@ -3,14 +3,18 @@ package com.pomodorotracker.backend.model.project;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pomodorotracker.backend.model.user.User;
 import jakarta.persistence.*;
 import java.time.Duration;
 import java.util.List;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Activity
 {
@@ -24,12 +28,12 @@ public class Activity
 
     private Duration spentTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="user_id")
-    @JsonIgnore
+    @JsonBackReference
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "project_id")
     @JsonBackReference
     private Project project;
@@ -38,7 +42,7 @@ public class Activity
 
     public Activity(String title, Project project, User user){
         this.title = title;
-        this.project = project;
         this.user = user;
+        this.project = project;
     }
 }

@@ -20,23 +20,20 @@ public class BackendApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner (UserRepository urepo, ActivityRepository arepo, ProjectRepository prepo){
 		return args -> {
-			var user = urepo.findById(1);
-			user.ifPresent(u -> System.out.println(u.toString()));
+			var user = urepo.findById(52);
+			var activities = arepo.findAllByUser(user.get());
+			System.out.println("teste");
 			//user.ifPresent(arepo::findAllByUser);
 		};
 	}
 //	@Bean
 //	public CommandLineRunner commandLineRunner (UserRepository urepo, ActivityRepository arepo, ProjectRepository prepo){
 //		return args -> {
-//			var newProject = new Project();
-//			newProject.setTitle("Semestre 2024,1");
-//			prepo.save(newProject);
+//			var newProject = prepo.findById(52);
 //
-//			var newUser = new User();
-//			newUser.setName("Kleber Aluizio");
-//			urepo.save(newUser);
+//			var newUser = urepo.findById(52);
 //
-//			var newActivity = new Activity("Estruturas de dados", newProject, newUser);
+//			var newActivity = new Activity("Metodologia da Pesquisa", newProject.get(), newUser.get());
 //			arepo.save(newActivity);
 //		};
 //	}
